@@ -9,4 +9,9 @@
      <string name="superior_lab_dash_title">Superior Lab</string>
      <string name="superior_lab_summary">Extending LineageOS Features</string>
 
+     <!-- About phone screen, Superior OS version -->
+     <string name="superior_version">SuperiorOS version</string>
+     <string name="superior_version_default">Unknown</string>
+     <string name="keywords_superior_version">SuperiorOS version, superior version</string>
+
 </resources>
