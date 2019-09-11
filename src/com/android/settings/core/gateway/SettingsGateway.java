@@ -411,7 +411,7 @@ public class SettingsGateway {
             HearingDevicePairingFragment.class.getName(),
             ZenModesListFragment.class.getName(),
             ZenModeFragment.class.getName(),
-            ContactsStorageSettings.class.getName()
+            ContactsStorageSettings.class.getName(),
             SuperiorLab.class.getName()
     };
 
