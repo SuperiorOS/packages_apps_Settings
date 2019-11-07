@@ -14,4 +14,7 @@
      <string name="superior_version_default">Unknown</string>
      <string name="keywords_superior_version">SuperiorOS version, superior version</string>
 
+     <!-- Three-fingers-swipe to screenshot -->
+     <string name="three_finger_gesture">Swipe to screenshot</string>
+     <string name="three_finger_gesture_summary">Swipe down with three fingers to take a screenshot</string>
 </resources>
