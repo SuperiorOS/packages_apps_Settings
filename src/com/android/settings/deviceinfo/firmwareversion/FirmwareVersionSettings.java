@@ -136,8 +136,14 @@ public class FirmwareVersionSettings extends DashboardFragment {
         // 5. Baseband Version
         final TextView summaryBaseband = bentoPref.findViewById(R.id.summary_baseband);
         if (summaryBaseband != null) {
-            final String baseband = SystemProperties.get("gsm.version.baseband",
+            String baseband = SystemProperties.get("gsm.version.baseband",
                     context.getString(R.string.device_info_default));
+            for (String str : baseband.split(",")) {
+                if (!TextUtils.isEmpty(str)) {
+                    baseband = str;
+                    break;
+                }
+            }
             summaryBaseband.setText(baseband);
         }
 
