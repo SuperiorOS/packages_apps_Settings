@@ -22,4 +22,8 @@
     <!-- Superior Lab -->
     <string name="superior_lab_dash_title">Superior Lab</string>
     <string name="superior_lab_summary">The place where we do experiments</string>
+
+    <!-- USB configuration -->
+    <string name="usb_default_config_title">USB configuration</string>
+    <string name="usb_default_config_summary">Choose the default behavior when connected to a device via USB</string>
 </resources>
