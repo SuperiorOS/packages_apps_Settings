@@ -126,6 +126,7 @@ android_library {
         "Spa-search",
         "SettingsInterfaceLib",
         "kotlin-stdlib",
+        "VendorSupport-preference",
 
         // app function dependencies
         "androidx.appsearch_appsearch",
