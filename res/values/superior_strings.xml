@@ -14,4 +14,10 @@
      <string name="superior_version_default">Unknown</string>
      <string name="keywords_superior_version">SuperiorOS version, superior version</string>
 
+     <!-- Ambient wake -->
+     <string name="doze_gesture_ambient_title">Show Ambient</string>
+     <string name="doze_gesture_ambient_summary">Show Ambient Display instead of fully waking the screen up</string>
+     <string name="gesture_wake_ambient">Show Ambient</string>
+     <string name="gesture_wake">Fully wake</string>
+
 </resources>
