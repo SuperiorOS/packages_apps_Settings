@@ -538,4 +538,7 @@ public class Settings extends SettingsActivity {
     public static class ContentProtectionSettingsActivity extends SettingsActivity { /* empty */ }
     public static class MagnificationActivity extends SettingsActivity { /* empty */ }
     public static class FlashNotificationsActivity extends SettingsActivity { /* empty */ }
+
+    // SuperiorLab Additoon
+    public static class SuperiorLabActivity extends SettingsActivity {}
 }
