@@ -55,7 +55,10 @@ android_library {
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
+        "SuperiorLab/src/**/*.java",
+        "SuperiorLab/src/**/*.kt",
     ],
+    aaptflags: ["--extra-packages com.superior.lab"],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
     ],
@@ -64,6 +67,7 @@ android_library {
         "res",
         "res-export", // for external usage
         "res-product",
+        "SuperiorLab/res",
     ],
     static_libs: [
         // External dependencies
@@ -112,6 +116,7 @@ android_library {
         "device_policy_aconfig_flags_lib",
         "keyboard_flags_lib",
         "VendorSupport-preference",
+        "kotlin-stdlib",
 
         // Lineage dependencies
         "org.lineageos.platform.internal",
