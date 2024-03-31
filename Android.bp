@@ -182,3 +182,9 @@ filegroup {
     name: "Settings_proguard_flags",
     srcs: ["proguard.flags"],
 }
+
+filegroup {
+    name: "Settings_manifest",
+    srcs: ["AndroidManifest.xml"],
+}
+
