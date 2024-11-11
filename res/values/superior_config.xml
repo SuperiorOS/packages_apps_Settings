@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <!-- ComponentName to launch a vendor-specific enrollment activity if available -->
     <string name="config_face_enroll">com.android.settings/com.google.android.settings.biometrics.face.FaceEnrollActivityDirector</string>
@@ -8,4 +9,8 @@
 
     <!-- Traffic light package to use -->
     <string name="config_face_enroll_traffic_light_package"></string>
+
+    <!-- Face enroll finish text -->
+    <string name="security_settings_face_enroll_finish_description_with_bp">Now you can use your face to unlock your phone or verify it’s you, like when you sign in to apps or approve a purchase</string>
+
 </resources>
