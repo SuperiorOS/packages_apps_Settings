@@ -23,10 +23,10 @@ jobs:
 
       - name: Add upstream remote and rebase
         run: |
-          git config --global pull.rebase true
+          git config --global pull.rebase false
           REPO_NAME="${GITHUB_REPOSITORY##*/}" # Extract the repository name from the GitHub repository context
           git pull https://github.com/LineageOS/android_${REPO_NAME}.git lineage-22.1
 
       - name: Push rebased changes to origin
         run: |
-          git push origin HEAD:fifteen-los --force-with-lease
+          git push origin HEAD:fifteen-los
