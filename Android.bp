@@ -78,6 +78,7 @@ android_library {
         "androidx.window_window-java",
         "gson",
         "guava",
+        "SystemUISharedLib",
 
         // Android internal dependencies
         "BiometricsSharedLib",
