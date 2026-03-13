@@ -818,4 +818,7 @@ public class Settings extends SettingsActivity {
             }
         }
     }
+
+    // SuperiorLab Additoon
+    public static class SuperiorLabActivity extends SettingsActivity {}
 }
