@@ -21,6 +21,18 @@
     android:key="top_level_settings">
 
     <com.android.settingslib.widget.UntitledPreferenceCategory
+        android:order="-135"
+        android:key="top_level_superior_lab_category">
+        <com.android.settings.widget.HomepagePreference
+            android:key="top_level_superior_lab"
+            android:title="@string/superior_lab_dash_title"
+            android:summary="@string/superior_lab_summary"
+            android:icon="@drawable/ic_homepage_superior"
+            android:order="-133"
+            android:fragment="com.superior.lab.SuperiorLab"/>
+    </com.android.settingslib.widget.UntitledPreferenceCategory>
+
+    <com.android.settingslib.widget.UntitledPreferenceCategory
         android:order="-130"
         android:key="top_level_connectivity_category">
         <com.android.settings.widget.HomepagePreference

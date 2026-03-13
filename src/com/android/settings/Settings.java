@@ -653,4 +653,7 @@ public class Settings extends SettingsActivity {
         }
     }
     public static class SafetyCenterActivity extends SettingsActivity { }
+
+    // SuperiorLab Additoon
+    public static class SuperiorLabActivity extends SettingsActivity {}
 }

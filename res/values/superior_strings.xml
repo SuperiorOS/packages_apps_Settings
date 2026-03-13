@@ -30,4 +30,8 @@
     <!-- Pulse on music track change -->
     <string name="pulse_on_new_tracks_title">Music ticker</string>
     <string name="pulse_on_new_tracks_summary">Show music ticker on Ambient Display during track change or now playing song detection</string>
+
+    <!-- Superior Lab -->
+    <string name="superior_lab_dash_title">Superior Lab</string>
+    <string name="superior_lab_summary">The place where we do experiments</string>
 </resources>
