@@ -15,18 +15,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Keybox Data -->
-    <string name="keybox_data_title">Select keybox XML to spoof</string>
-    <string name="keybox_data_summary">Select keybox XML used for key attestation spoofing for all apps system wide. Click the delete button in order to reset the keybox data values used by the system.</string>
-
-    <!-- Pif Data -->
-    <string name="pif_data_title">Select PIF JSON to spoof</string>
-    <string name="pif_data_summary">Select PIF JSON used for prop attestation spoofing for google mobile services and play store. Click the delete button in order to reset the PIF data props and use dynamic PIF props which are used by default.</string>
-
-    <!-- Ignore window secure -->
-    <string name="ignore_window_secure_title">Ignore window secure flags</string>
-    <string name="ignore_window_secure_summary">Remove screenshot and screenrecord limits for all apps. This can be convenient in some cases but may lead to privacy leaks.</string>
-
     <!-- Pulse on music track change -->
     <string name="pulse_on_new_tracks_title">Music ticker</string>
     <string name="pulse_on_new_tracks_summary">Show music ticker on Ambient Display during track change or now playing song detection</string>

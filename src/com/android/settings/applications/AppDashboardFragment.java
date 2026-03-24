@@ -16,18 +16,9 @@
 
 package com.android.settings.applications;
 
-import android.app.Activity;
 import android.app.settings.SettingsEnums;
 import android.content.Context;
-import android.content.Intent;
 import android.provider.SearchIndexableResource;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.preference.Preference;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,12 +44,6 @@ public class AppDashboardFragment extends DashboardFragment {
     private static final String TAG = "AppDashboardFragment";
     private static final String ADVANCED_CATEGORY_KEY = "advanced_category";
     private static final String ASPECT_RATIO_PREF_KEY = "aspect_ratio_apps";
-    private static final String KEYBOX_DATA_KEY = "keybox_data_setting";
-    private static final String PIF_DATA_KEY = "pif_data_setting";
-    private ActivityResultLauncher<Intent> mKeyboxFilePickerLauncher;
-    private ActivityResultLauncher<Intent> mPifFilePickerLauncher;
-    private KeyboxDataPreference mKeyboxDataPreference;
-    private PifDataPreference mPifDataPreference;
     private AppsPreferenceController mAppsPreferenceController;
 
     private static List<AbstractPreferenceController> buildPreferenceControllers(Context context) {
@@ -109,48 +94,6 @@ public class AppDashboardFragment extends DashboardFragment {
         final HibernatedAppsPreferenceController hibernatedAppsPreferenceController =
                 use(HibernatedAppsPreferenceController.class);
         getSettingsLifecycle().addObserver(hibernatedAppsPreferenceController);
-
-        mKeyboxFilePickerLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri uri = result.getData().getData();
-                    Preference pref = findPreference(KEYBOX_DATA_KEY);
-                    if (pref instanceof KeyboxDataPreference) {
-                        ((KeyboxDataPreference) pref).handleFileSelected(uri);
-                    }
-                }
-            }
-        );
-
-        mPifFilePickerLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri uri = result.getData().getData();
-                    Preference pref = findPreference(PIF_DATA_KEY);
-                    if (pref instanceof PifDataPreference) {
-                        ((PifDataPreference) pref).handleFileSelected(uri);
-                    }
-                }
-            }
-        );
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        mKeyboxDataPreference = findPreference(KEYBOX_DATA_KEY);
-        mPifDataPreference = findPreference(PIF_DATA_KEY);
-
-        if (mKeyboxDataPreference != null) {
-            mKeyboxDataPreference.setFilePickerLauncher(mKeyboxFilePickerLauncher);
-        }
-
-        if (mPifDataPreference != null) {
-            mPifDataPreference.setFilePickerLauncher(mPifFilePickerLauncher);
-        }
     }
 
     @VisibleForTesting
