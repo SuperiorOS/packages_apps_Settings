@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: The SuperiorOS Project
+SPDX-License-Identifier: Apache-2.0
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/firmware_bento_grid_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="9dp"
+    android:paddingEnd="9dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="24dp">
+
+    <!-- ROW 1 (1.22 : 1): Android Version (Easter Egg) & Google Play System Update -->
+    <LinearLayout
+        android:id="@+id/row_android_mainline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <!-- Card 1: Android Version (Interactive Easter Egg) -->
+        <FrameLayout
+            android:id="@+id/card_android_version"
+            style="@style/LabBentoCard"
+            android:layout_weight="1.22"
+            android:backgroundTint="@color/lab_card_statusbar">
+
+            <ImageView
+                style="@style/LabWatermarkIcon"
+                android:layout_marginEnd="46dp"
+                android:src="@drawable/ic_firmware_android"
+                android:tint="@color/lab_text_statusbar" />
+
+            <LinearLayout style="@style/LabCardContent">
+                <FrameLayout
+                    style="@style/LabSquircleContainer"
+                    android:backgroundTint="@color/lab_icon_statusbar">
+                    <ImageView
+                        style="@style/LabSquircleIcon"
+                        android:src="@drawable/ic_firmware_android" />
+                </FrameLayout>
+
+                <Space style="@style/LabCardSpacer" />
+
+                <TextView
+                    style="@style/LabCardTitle"
+                    android:text="@string/firmware_version"
+                    android:textColor="@color/lab_text_statusbar" />
+
+                <TextView
+                    android:id="@+id/summary_android_version"
+                    style="@style/LabCardSummary"
+                    android:textColor="@color/lab_text_statusbar" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Card 2: Google Play System Update -->
+        <FrameLayout
+            android:id="@+id/card_module_version"
+            style="@style/LabBentoCard"
+            android:layout_weight="1"
+            android:backgroundTint="@color/lab_card_notifications">
+
+            <ImageView
+                style="@style/LabWatermarkIcon"
+                android:layout_marginEnd="42dp"
+                android:src="@drawable/ic_firmware_play_update"
+                android:tint="@color/lab_text_notifications" />
+
+            <LinearLayout style="@style/LabCardContent">
+                <FrameLayout
+                    style="@style/LabSquircleContainer"
+                    android:backgroundTint="@color/lab_icon_notifications">
+                    <ImageView
+                        style="@style/LabSquircleIcon"
+                        android:src="@drawable/ic_firmware_play_update" />
+                </FrameLayout>
+
+                <Space style="@style/LabCardSpacer" />
+
+                <TextView
+                    style="@style/LabCardTitle"
+                    android:text="@string/module_version"
+                    android:textColor="@color/lab_text_notifications" />
+
+                <TextView
+                    android:id="@+id/summary_module_version"
+                    style="@style/LabCardSummary"
+                    android:textColor="@color/lab_text_notifications" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- ROW 2 (1 : 1.22): Security Patch & Kernel Version -->
+    <LinearLayout
+        android:id="@+id/row_security_kernel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <!-- Card 3: Security Patch Level -->
+        <FrameLayout
+            android:id="@+id/card_security_patch"
+            style="@style/LabBentoCard"
+            android:layout_weight="1"
+            android:backgroundTint="@color/lab_card_lockscreen">
+
+            <ImageView
+                style="@style/LabWatermarkIcon"
+                android:layout_marginEnd="42dp"
+                android:src="@drawable/ic_firmware_security"
+                android:tint="@color/lab_text_lockscreen" />
+
+            <LinearLayout style="@style/LabCardContent">
+                <FrameLayout
+                    style="@style/LabSquircleContainer"
+                    android:backgroundTint="@color/lab_icon_lockscreen">
+                    <ImageView
+                        style="@style/LabSquircleIcon"
+                        android:src="@drawable/ic_firmware_security" />
+                </FrameLayout>
+
+                <Space style="@style/LabCardSpacer" />
+
+                <TextView
+                    style="@style/LabCardTitle"
+                    android:text="@string/security_patch"
+                    android:textColor="@color/lab_text_lockscreen" />
+
+                <TextView
+                    android:id="@+id/summary_security_patch"
+                    style="@style/LabCardSummary"
+                    android:textColor="@color/lab_text_lockscreen" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Card 4: Kernel Version -->
+        <FrameLayout
+            android:id="@+id/card_kernel_version"
+            style="@style/LabBentoCard"
+            android:layout_weight="1.22"
+            android:backgroundTint="@color/lab_card_powermenu">
+
+            <ImageView
+                style="@style/LabWatermarkIcon"
+                android:layout_marginEnd="46dp"
+                android:src="@drawable/ic_firmware_kernel"
+                android:tint="@color/lab_text_powermenu" />
+
+            <LinearLayout style="@style/LabCardContent">
+                <FrameLayout
+                    style="@style/LabSquircleContainer"
+                    android:backgroundTint="@color/lab_icon_powermenu">
+                    <ImageView
+                        style="@style/LabSquircleIcon"
+                        android:src="@drawable/ic_firmware_kernel" />
+                </FrameLayout>
+
+                <Space style="@style/LabCardSpacer" />
+
+                <TextView
+                    style="@style/LabCardTitle"
+                    android:text="@string/kernel_version"
+                    android:textColor="@color/lab_text_powermenu" />
+
+                <TextView
+                    android:id="@+id/summary_kernel_version"
+                    style="@style/LabCardSummary"
+                    android:textColor="@color/lab_text_powermenu" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- ROW 3: Wide Featured Card for Baseband Version -->
+    <LinearLayout
+        android:id="@+id/card_baseband"
+        style="@style/LabWideCard"
+        android:layout_marginTop="6dp"
+        android:minHeight="84dp"
+        android:backgroundTint="@color/lab_card_buttons">
+
+        <FrameLayout
+            style="@style/LabSquircleContainer"
+            android:backgroundTint="@color/lab_icon_buttons">
+            <ImageView
+                style="@style/LabSquircleIcon"
+                android:src="@drawable/ic_firmware_baseband" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/LabCardTitle"
+                android:text="@string/baseband_version"
+                android:textColor="@color/lab_text_buttons" />
+
+            <TextView
+                android:id="@+id/summary_baseband"
+                style="@style/LabCardSummary"
+                android:textColor="@color/lab_text_buttons" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ROW 4: Wide Featured Card for Build Number with Badge -->
+    <LinearLayout
+        android:id="@+id/card_build_number"
+        style="@style/LabWideCard"
+        android:layout_marginTop="6dp"
+        android:minHeight="84dp"
+        android:backgroundTint="@color/lab_card_misc">
+
+        <FrameLayout
+            style="@style/LabSquircleContainer"
+            android:backgroundTint="@color/lab_icon_misc">
+            <ImageView
+                style="@style/LabSquircleIcon"
+                android:src="@drawable/ic_firmware_build" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/LabCardTitle"
+                android:text="@string/build_number"
+                android:textColor="@color/lab_text_misc" />
+
+            <TextView
+                android:id="@+id/summary_build_number"
+                style="@style/LabCardSummary"
+                android:textColor="@color/lab_text_misc" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/badge_build_type"
+            style="@style/LabBadge"
+            android:text="Official" />
+    </LinearLayout>
+
+</LinearLayout>
