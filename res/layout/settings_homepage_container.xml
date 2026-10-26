@@ -26,6 +26,8 @@
         android:id="@+id/main_content_scrollable_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="96dp"
         app:layout_behavior="com.android.settings.widget.HomepageAppBarScrollingViewBehavior">
 
         <LinearLayout
@@ -65,19 +67,41 @@
         app:elevation="0dp"
         android:touchscreenBlocksFocus="false"
         android:keyboardNavigationCluster="false">
-        <LinearLayout
-            android:id="@+id/app_bar_container"
+        <!-- The bar owns the background and the scroll flags; only the text inside is scaled,
+             so the shrinking title does not shrink its own backdrop. -->
+        <FrameLayout
+            android:id="@+id/hp_title_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/search_bar_container_top_padding"
-            android:paddingBottom="@dimen/settingslib_expressive_space_extrasmall4"
-            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-            android:background="?android:attr/colorBackground">
+            android:layout_height="@dimen/hp_title_height"
+            android:minHeight="@dimen/hp_title_min_height"
+            android:background="?android:attr/colorBackground"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <include layout="@layout/search_bar"/>
-
-        </LinearLayout>
+            <TextView
+                android:id="@+id/hp_title_large"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|start"
+                android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+                android:paddingBottom="12dp"
+                android:text="@string/settings_label"
+                android:textColor="@color/settingslib_text_color_primary"
+                android:textSize="34sp" />
+        </FrameLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/hp_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="16dp"
+        android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+        android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+        android:clipToPadding="false"
+        android:elevation="6dp">
+
+        <include layout="@layout/search_bar"/>
+    </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

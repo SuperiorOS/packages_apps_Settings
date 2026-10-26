@@ -57,6 +57,11 @@ public class RestrictedHomepagePreference extends RestrictedTopLevelPreference i
     }
 
     @Override
+    public void refreshRow() {
+        notifyChanged();
+    }
+
+    @Override
     public HomepagePreferenceLayoutHelper getHelper() {
         return mHelper;
     }

@@ -28,6 +28,7 @@ import androidx.preference.PreferenceScreen;
 import com.android.settings.R;
 import com.android.settings.core.BasePreferenceController;
 import com.android.settings.overlay.FeatureFactory;
+import com.android.settings.widget.HomepagePreferenceLayoutHelper;
 import com.android.settingslib.Utils;
 import com.android.settingslib.core.lifecycle.LifecycleObserver;
 import com.android.settingslib.core.lifecycle.events.OnStart;
@@ -143,6 +144,11 @@ public class TopLevelBatteryPreferenceController extends BasePreferenceControlle
                                 if (!triggerBatteryStatusUpdate) {
                                     mBatteryStatusLabel = null; // will generateLabel()
                                 }
+                                HomepagePreferenceLayoutHelper.setProgress(
+                                        mPreference,
+                                        info.batteryLevel,
+                                        info.batteryLevel <= 15 ? 3
+                                                : info.batteryLevel <= 30 ? 2 : 1);
                                 mPreference.setSummary(
                                         mBatteryStatusLabel == null
                                                 ? generateLabel(info)

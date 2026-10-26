@@ -30,6 +30,7 @@ import com.android.settings.core.BasePreferenceController;
 import com.android.settings.dashboard.profileselector.ProfileSelectFragment.ProfileType;
 import com.android.settings.deviceinfo.storage.StorageCacheHelper;
 import com.android.settings.flags.Flags;
+import com.android.settings.widget.HomepagePreferenceLayoutHelper;
 import com.android.settingslib.deviceinfo.PrivateStorageInfo;
 import com.android.settingslib.deviceinfo.StorageManagerVolumeProvider;
 import com.android.settingslib.utils.ThreadUtils;
@@ -70,6 +71,7 @@ public class TopLevelStoragePreferenceController extends BasePreferenceControlle
         long cachedUsedSize = storageCacheHelper.retrieveUsedSize();
         long cachedTotalSize = storageCacheHelper.retrieveCachedSize().totalSize;
         if (cachedUsedSize != 0 && cachedTotalSize != 0) {
+            setProgress(preference, cachedUsedSize, cachedTotalSize);
             preference.setSummary(getSummary(cachedUsedSize, cachedTotalSize));
         }
 
@@ -80,10 +82,17 @@ public class TopLevelStoragePreferenceController extends BasePreferenceControlle
             long usedBytes = info.totalBytes - info.freeBytes;
             storageCacheHelper.cacheUsedSize(usedBytes);
             ThreadUtils.postOnMainThread(() -> {
+                setProgress(preference, usedBytes, info.totalBytes);
                 preference.setSummary(
                         getSummary(usedBytes, info.totalBytes));
             });
         });
+    }
+
+    private static void setProgress(Preference preference, long usedBytes, long totalBytes) {
+        final int percent = totalBytes == 0L ? 0 : (int) ((usedBytes * 100L) / totalBytes);
+        HomepagePreferenceLayoutHelper.setProgress(
+                preference, percent, percent >= 90 ? 3 : percent >= 80 ? 2 : 0);
     }
 
     @VisibleForTesting

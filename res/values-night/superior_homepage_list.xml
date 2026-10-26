@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: The SuperiorOS Project
+SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <color name="hp_chevron">@android:color/system_neutral2_200</color>
+    <color name="hp_chip1_bg">@android:color/system_accent1_700</color>
+    <color name="hp_chip1_fg">@android:color/system_accent1_100</color>
+    <color name="hp_chip2_bg">@android:color/system_accent2_700</color>
+    <color name="hp_chip2_fg">@android:color/system_accent2_100</color>
+    <color name="hp_chip3_bg">@android:color/system_accent3_700</color>
+    <color name="hp_chip3_fg">@android:color/system_accent3_100</color>
+    <color name="hp_tone_ok">#6FD49A</color>
+    <color name="hp_tone_warn">#F0B266</color>
+    <color name="hp_tone_bad">#F2B8B5</color>
+    <color name="hp_group_label">@android:color/system_accent1_200</color>
+</resources>

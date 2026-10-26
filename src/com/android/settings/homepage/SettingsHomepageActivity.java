@@ -43,9 +43,11 @@ import android.util.ArraySet;
 import android.util.FeatureFlagUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.core.graphics.Insets;
@@ -80,6 +82,7 @@ import com.android.settingslib.Utils;
 import com.android.settingslib.core.lifecycle.HideNonSystemOverlayMixin;
 import com.android.settingslib.widget.SettingsThemeHelper;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.setupcompat.util.WizardManagerHelper;
 
 import java.net.URISyntaxException;
@@ -107,6 +110,9 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
     static final int DEFAULT_HIGHLIGHT_MENU_KEY = R.string.menu_key_network;
     private static final long HOMEPAGE_LOADING_TIMEOUT_MS = 300;
+
+    /** Scale of the large "Settings" title once it has collapsed to the top. */
+    private static final float TITLE_MIN_SCALE = 0.62f;
 
     private TopLevelSettings mMainFragment;
     private View mHomepageView;
@@ -262,6 +268,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         mLoadedListeners = new ArraySet<>();
 
         initSearchBarView();
+        initCollapsingTitle();
 
         getLifecycle().addObserver(new HideNonSystemOverlayMixin(this));
         mCategoryMixin = new CategoryMixin(this);
@@ -396,18 +403,45 @@ public class SettingsHomepageActivity extends FragmentActivity implements
                     // Apply the insets paddings to the view.
                     v.setPadding(insets.left, 0, insets.right, insets.bottom);
 
-                    // reset the top padding of search bar container to original top padding
-                    // plus insets top.
-                    View container = findViewById(R.id.app_bar_container);
-                    final int top_padding = getResources().getDimensionPixelSize(
-                            R.dimen.search_bar_container_top_padding);
-                    container.setPadding(container.getPaddingLeft(), top_padding + insets.top,
-                            container.getPaddingRight(), container.getPaddingBottom());
+                    // The large title sits first in the app bar so that it can collapse; give it
+                    // the status bar height, keeping its collapsed and expanded sizes.
+                    final View bar = findViewById(R.id.hp_title_bar);
+                    if (bar != null) {
+                        bar.setPadding(bar.getPaddingLeft(), insets.top,
+                                bar.getPaddingRight(), bar.getPaddingBottom());
+                        bar.setMinimumHeight(getResources().getDimensionPixelSize(
+                                R.dimen.hp_title_min_height) + insets.top);
+                        final ViewGroup.LayoutParams lp = bar.getLayoutParams();
+                        lp.height = getResources().getDimensionPixelSize(
+                                R.dimen.hp_title_height) + insets.top;
+                        bar.setLayoutParams(lp);
+                    }
 
                     // Return CONSUMED if you don't want the window insets to keep being
                     // passed down to descendant views.
                     return WindowInsetsCompat.CONSUMED;
                 });
+    }
+
+    /** Shrinks the large "Settings" title and pins it at the top as the list scrolls. */
+    private void initCollapsingTitle() {
+        final TextView title = findViewById(R.id.hp_title_large);
+        final AppBarLayout appBar = findViewById(R.id.app_bar);
+        if (title == null || appBar == null) {
+            return;
+        }
+        appBar.addOnOffsetChangedListener((layout, offset) -> {
+            final int range = layout.getTotalScrollRange();
+            if (range <= 0) {
+                return;
+            }
+            final float progress = Math.min(1f, Math.max(0f, -offset / (float) range));
+            final float scale = 1f - (1f - TITLE_MIN_SCALE) * progress;
+            title.setPivotX(title.getPaddingStart());
+            title.setPivotY(title.getHeight() - title.getPaddingBottom());
+            title.setScaleX(scale);
+            title.setScaleY(scale);
+        });
     }
 
     private void initSearchBarView() {
@@ -440,8 +474,8 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
         // Update content background.
         findViewById(android.R.id.content).setBackgroundColor(color);
-        //Update search bar background
-        findViewById(R.id.app_bar_container).setBackgroundColor(color);
+        // Update title bar background
+        findViewById(R.id.hp_title_bar).setBackgroundColor(color);
     }
 
     private void showSuggestionFragment(boolean scrollNeeded) {

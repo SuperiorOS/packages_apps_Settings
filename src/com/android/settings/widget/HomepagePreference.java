@@ -60,6 +60,11 @@ public class HomepagePreference extends Preference implements
     }
 
     @Override
+    public void refreshRow() {
+        notifyChanged();
+    }
+
+    @Override
     public HomepagePreferenceLayoutHelper getHelper() {
         return mHelper;
     }

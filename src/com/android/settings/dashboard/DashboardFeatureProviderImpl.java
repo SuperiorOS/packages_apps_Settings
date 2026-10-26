@@ -553,6 +553,12 @@ public class DashboardFeatureProviderImpl implements DashboardFeatureProvider {
 
     private Drawable getExpressiveHomepageIcon(Tile tile, Drawable iconDrawable,
             @Nullable String iconPackage) {
+        // Use Fluent glyphs for well-known injected entries.
+        final int fluentRes = getFluentOverride(tile);
+        if (fluentRes != 0) {
+            iconDrawable = mContext.getDrawable(fluentRes);
+            iconPackage = mContext.getPackageName();
+        }
         // Normalize icon size
         LayerDrawable drawable = new LayerDrawable(new Drawable[] {iconDrawable});
         int size = mContext.getResources().getDimensionPixelSize(R.dimen.dashboard_tile_image_size);
@@ -566,6 +572,20 @@ public class DashboardFeatureProviderImpl implements DashboardFeatureProvider {
 
         ColorScheme scheme = getColorScheme(tile);
         return getRoundedIcon(drawable, scheme.foregroundColor, scheme.backgroundColor);
+    }
+
+    private int getFluentOverride(Tile tile) {
+        if (tile.getIntent() == null || tile.getIntent().getComponent() == null) {
+            return 0;
+        }
+        switch (tile.getIntent().getComponent().getPackageName()) {
+            case "com.google.android.gms":
+                return R.drawable.ic_fluent_person_circle_24_regular;
+            case "com.google.android.apps.wellbeing":
+                return R.drawable.ic_fluent_hourglass_24_regular;
+            default:
+                return 0;
+        }
     }
 
     private Drawable getRoundedIcon(Drawable iconDrawable, int fgColorId, int bgColorId) {
